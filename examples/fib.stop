@@ -1,0 +1,38 @@
+mov r0 0
+mov r1 1
+
+mov r2 10
+
+jmp :loop
+
+:dec
+    ld r2
+    jmpz end
+
+    push 1
+    swap
+    sub
+
+    st r2
+
+    ret
+
+:show
+    ld r0
+    putn
+
+    ret
+
+:loop
+    call dec
+
+    ld r1
+    dup
+    ld r0
+    add
+    st r1
+    st r0
+
+    call show
+
+:end
