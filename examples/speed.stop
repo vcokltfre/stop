@@ -1,0 +1,14 @@
+push 10000000
+
+:start
+
+dup
+jmpz end
+
+push 1
+swap
+sub
+
+jmp start
+
+:end
