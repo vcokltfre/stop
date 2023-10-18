@@ -34,6 +34,40 @@ const (
 	IHeaderPutC uint8 = 0xB1 // Put character
 )
 
+const (
+	ISizeHlt = 1 // {header}
+	ISizeDbg = 1 // {header}
+
+	ISizeMovLiteral  = 10 // {header, reg, value[8]}
+	ISizeMovRegister = 3  // {header, reg, source}
+
+	ISizePush = 9 // {header, value[8]}
+	ISizeDup  = 1 // {header}
+	ISizeDrop = 1 // {header}
+	ISizeSwap = 1 // {header}
+
+	ISizeLd = 2 // {header, reg}
+	ISizeSt = 2 // {header, reg}
+
+	ISizeAdd = 1 // {header}
+	ISizeSub = 1 // {header}
+	ISizeMul = 1 // {header}
+	ISizeDiv = 1 // {header}
+	ISizeMod = 1 // {header}
+
+	ISizeLabel = 3 // {header, label[2]}
+	ISizeCall  = 3 // {header, label[2]}
+	ISizeJmp   = 3 // {header, label[2]}
+	ISizeJmpZ  = 3 // {header, label[2]}
+	ISizeJmpNZ = 3 // {header, label[2]}
+	ISizeJmpP  = 3 // {header, label[2]}
+	ISizeJmpN  = 3 // {header, label[2]}
+	ISizeRet   = 1 // {header}
+
+	ISizePutN = 1 // {header}
+	ISizePutC = 1 // {header}
+)
+
 type Instruction interface {
 	Emit() []byte
 }

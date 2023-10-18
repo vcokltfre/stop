@@ -15,8 +15,14 @@ func main() {
 
 	switch os.Args[1] {
 	case "run":
-		fmt.Println("Not implemented yet")
-		os.Exit(1)
+		data, err := os.ReadFile(os.Args[2])
+		if err != nil {
+			fmt.Printf("Error reading file: %s\n", err.Error())
+			os.Exit(1)
+		}
+
+		vm := stop.VM{}
+		vm.Run(data)
 	case "build":
 		data, err := os.ReadFile(os.Args[2])
 		if err != nil {
@@ -30,23 +36,11 @@ func main() {
 			os.Exit(1)
 		}
 
-		os.Remove(os.Args[2] + ".bc")
-
-		file, err := os.Create(os.Args[2] + ".bc")
+		err = os.WriteFile(os.Args[2]+".bc", stop.Compile(parsed), 0644)
 		if err != nil {
-			fmt.Printf("Error creating file: %s\n", err.Error())
+			fmt.Printf("Error writing file: %s\n", err.Error())
 			os.Exit(1)
 		}
-
-		for _, val := range parsed {
-			_, err := file.Write(val.Emit())
-			if err != nil {
-				fmt.Printf("Error writing to file: %s\n", err.Error())
-				os.Exit(1)
-			}
-		}
-
-		file.Close()
 	case "explain":
 		fmt.Println("Not implemented yet")
 		os.Exit(1)
