@@ -42,8 +42,13 @@ func main() {
 			os.Exit(1)
 		}
 	case "explain":
-		fmt.Println("Not implemented yet")
-		os.Exit(1)
+		data, err := os.ReadFile(os.Args[2])
+		if err != nil {
+			fmt.Printf("Error reading file: %s\n", err.Error())
+			os.Exit(1)
+		}
+
+		stop.Explain(data)
 	default:
 		fmt.Printf("Unknown command: %s\n", os.Args[1])
 		os.Exit(1)
