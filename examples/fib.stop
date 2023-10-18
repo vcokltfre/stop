@@ -3,7 +3,7 @@ mov r1 1
 
 mov r2 10
 
-jmp :loop
+jmp loop
 
 :dec
     ld r2
