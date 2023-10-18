@@ -26,6 +26,7 @@ jmp loop
 
 :loop
     call dec
+    call show
 
     ld r1
     dup
@@ -34,7 +35,6 @@ jmp loop
     st r1
     st r0
 
-    call show
     jmp loop
 
 :end
