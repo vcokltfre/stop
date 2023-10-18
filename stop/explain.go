@@ -29,10 +29,11 @@ func Explain(code []byte) {
 	for index < len(code) {
 		explain := func(name, message string) {
 			padding := strings.Repeat(" ", 8-len(name))
+			instr := code[index]
 			if message == "" {
-				fmt.Printf("[%4x] %s%s\n", index, name, padding)
+				fmt.Printf("[%4x] %2x %s%s\n", index, instr, name, padding)
 			} else {
-				fmt.Printf("[%4x] %s%s %s\n", index, name, padding, message)
+				fmt.Printf("[%4x] %2x %s%s %s\n", index, instr, name, padding, message)
 			}
 		}
 
